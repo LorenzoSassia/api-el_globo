@@ -45,5 +45,5 @@ exports.validarCasilleros = [
 
 exports.validarCobradores = [
     body('nombre').notEmpty().withMessage('El nombre es obligatoria'),
-    body('zona').notEmpty().withMessage('La zona es obligatorio')
+    body('zonas_id').isInt({ gt: 0 }).withMessage('El ID de la zona es obligatorio y debe ser un número válido')
 ]

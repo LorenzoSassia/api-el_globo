@@ -1,20 +1,29 @@
 const jwt = require('jsonwebtoken');
 
 const verificarToken = (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (!token) return res.status(401).json({ mensaje: 'Token requerido' });
+    // 1. Obtener el header completo (ej: "Bearer <token...>")
+    const tokenHeader = req.headers['authorization']; 
+    if (!tokenHeader) {
+        return res.status(401).json({ mensaje: 'Token requerido' });
+    }
 
-    // Separar "Bearer" del token
-    /*const tokenParts = authHeader.split(' ');
+    // 2. Separar la palabra "Bearer" del token
+    const tokenParts = tokenHeader.split(' '); // Divide en ["Bearer", "<token...>"]
     if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
         return res.status(401).json({ mensaje: 'Formato de token inválido. Se esperaba "Bearer [token]".' });
     }
+    
+    // 3. Obtener solo el token real (la segunda parte)
     const token = tokenParts[1];
-    */
+
+    // 4. Verificar SOLO el token (no el header completo)
     jwt.verify(token, 'secreto123', (err, decoded) => {
-        if (err) return res.status(401).json({ mensaje: 'Token inválido'});
-        req.usuario = decoded; 
-        next();
+        if (err) {
+            // Si la firma 'secreto123' no coincide o el token expiró, dará error
+            return res.status(401).json({ mensaje: 'Token inválido'});
+        }
+        req.usuario = decoded; // Adjunta los datos del usuario (id, rol) al objeto req
+        next(); // ¡Permite el paso al siguiente controlador!
     });
 };
 

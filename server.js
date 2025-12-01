@@ -8,6 +8,7 @@ const { manejoErrores } = require('./middlewares/manejoErrores');
 
 const app = express();
 const sociosRoutes = require('./routes/socios'); 
+const usuariosRoutes = require('./routes/usuarios');
 const casillerosRoutes = require('./routes/casilleros');
 const actividadesRoutes = require('./routes/actividades');
 const cobranzasRoutes = require('./routes/cobranzas');
@@ -26,6 +27,7 @@ app.use(subirArchivo());
 app.use('/api/auth', authRoutes); // Rutas de autenticacion
 
 app.use('/api/socios', verificarToken, sociosRoutes);
+app.use('/api/usuarios', verificarToken, usuariosRoutes);
 app.use('/api/casilleros', verificarToken, casillerosRoutes);
 app.use('/api/actividades', actividadesRoutes);
 app.use('/api/cobranzas', verificarToken, cobranzasRoutes);

@@ -5,13 +5,11 @@ exports.validarSocios = [
     body('apellido').notEmpty().withMessage('El apellido es obligatorio'),
     body('direccion').notEmpty().withMessage('La direccion es obligatoria'),
     body('dni').notEmpty().withMessage('El dni es obligatorio'),
-    body('fecha_nacimiento').notEmpty().withMessage('La fecha_nacimiento es obligatorio'),
+    body('fechaNacimiento').notEmpty().withMessage('La fecha_nacimiento es obligatorio'),
     body('telefono').notEmpty().withMessage('El telefono es obligatorio'),
-    body('estado').notEmpty().withMessage('El estado es obligatorio'),
-    body('email').notEmpty().withMessage('El email es obligatorio'),
-    body('fecha_alta').notEmpty().withMessage('La fecha_alta es obligatorio'),
-    body('casilleros_id').notEmpty().withMessage('La casilleros_id es obligatorio'),
-    body('categorias_id').isInt().withMessage('El categorias_id es obligatorio')
+    body('email').notEmpty().withMessage('El email es obligatorio')
+    
+    
 ]
 
 exports.validarCobranzas = [
@@ -29,6 +27,13 @@ exports.validarActividades = [
     body('nombre').notEmpty().withMessage('El nombre es obligatorio'),
     body('costo').isFloat().withMessage('El costo es obligatoria'),
     body('turno').notEmpty().withMessage('El turno es obligatorio')
+]
+
+exports.validarUsuarios = [
+    body('usuario').notEmpty().withMessage('El nombre es obligatorio'),
+    body('contrasena').notEmpty().withMessage('El costo es obligatoria'),
+    body('rol').notEmpty().withMessage('El turno es obligatorio')
+    //body('idSocio').isInt().withMessage('El idSocio es obligatorio')
 ]
 
 exports.validarCategorias = [

@@ -42,13 +42,14 @@ exports.getPorId = async (req, res, next) => {
  * (Traducción a async/await)
  */
 exports.insertar = async (req, res, next) => {
-    //const { usuario, contrasena, rol, idSocio } = req.body;
+    const { usuario, contrasena, rol, idSocio, idCobrador } = req.body;
     
     try {
         const hash = await require('bcrypt').hash(contrasena, 10);
+
         const [result] = await db.query(
-            'INSERT INTO usuarios (usuario, contrasena, rol, idSocio) VALUES(?,?,?,?)', 
-            [usuario, hash, rol, idSocio]
+            'INSERT INTO usuarios (usuario, contrasena, rol, idSocio, idCobrador) VALUES(?,?,?,?,?)', 
+            [usuario, hash, rol, idSocio, idCobrador]
         );
         
         res.status(201).json({ id: result.insertId });
@@ -63,13 +64,13 @@ exports.insertar = async (req, res, next) => {
  */
 exports.modificar = async (req, res, next) => {
     const id = req.params.id;
-    //const { usuario, contrasena, rol, idSocio } = req.body;
+    const { usuario, contrasena, rol, idSocio, idCobrador } = req.body;
     
     try {
         const hash = await require('bcrypt').hash(contrasena, 10);
         await db.query(
-            'UPDATE usuarios SET usuario=?, contrasena=?, rol=?, idSocio=? WHERE id=?',
-            [usuario, hash, rol, idSocio, id]
+            'UPDATE usuarios SET usuario=?, contrasena=?, rol=?, idSocio=?, idCobrador=? WHERE id=?',
+            [usuario, hash, rol, idSocio, idCobrador, id]
         );
         
         res.json({ mensaje: 'Usuario actualizado' });

@@ -26,6 +26,7 @@ exports.login = async (req, res, next) => {
                 usuario: usu.usuario,
                 rol: usu.rol,
                 idSocio: usu.idSocio, // <-- ¡AÑADIDO!
+                idCobrador: usu.idCobrador, // <-- ¡AÑADIDO!
                 nombreCompleto: usu.nombreCompleto
             }
         });

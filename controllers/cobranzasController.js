@@ -6,7 +6,7 @@ const db = require('../db');
  */
 exports.getTodos = async (req, res, next) => {
     try {
-        const [results] = await db.query('SELECT * FROM cobranzas');
+        const [results] = await db.query('SELECT * FROM vista_cobranzas');
         res.json(results);
     } catch (err) {
         // Pasa el error al manejador de errores de Express
@@ -21,7 +21,7 @@ exports.getTodos = async (req, res, next) => {
 exports.getPorId = async (req, res, next) => {
     const id = req.params.id;
     try {
-        const [results] = await db.query('SELECT * FROM cobranzas WHERE id=?', [id]);
+        const [results] = await db.query('SELECT * FROM vista_cobranzas WHERE id=?', [id]);
         
         if (results.length === 0) {
             return res.status(404).json({

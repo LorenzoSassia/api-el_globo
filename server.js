@@ -10,6 +10,7 @@ const app = express();
 const sociosRoutes = require('./routes/socios'); 
 const usuariosRoutes = require('./routes/usuarios');
 const casillerosRoutes = require('./routes/casilleros');
+const vistaCobranzasRoutes = require('./routes/vistaCobranzas');
 const actividadesRoutes = require('./routes/actividades');
 const cobranzasRoutes = require('./routes/cobranzas');
 const cobradoresRoutes = require('./routes/cobradores');
@@ -32,6 +33,7 @@ app.use('/api/casilleros', verificarToken, casillerosRoutes);
 app.use('/api/actividades', actividadesRoutes);
 app.use('/api/cobranzas', verificarToken, cobranzasRoutes);
 app.use('/api/cobradores', verificarToken, cobradoresRoutes);
+app.use('/api/vistaCobranzas', vistaCobranzasRoutes);
 app.use('/api/categorias', verificarToken, categoriasRoutes);
 app.use('/api', authRoutes); // Usa las rutas bajo /api
 

@@ -13,14 +13,14 @@ exports.validarSocios = [
 ]
 
 exports.validarCobranzas = [
-    body('fecha_emision').notEmpty().withMessage('El fecha_emision es obligatorio'),
+    body('fechaEmision').notEmpty().withMessage('El fecha_emision es obligatorio'),
     body('mes').notEmpty().withMessage('El mes es obligatorio'),
     body('monto').isInt().withMessage('La monto es obligatoria'),
     body('estado').notEmpty().withMessage('El estado es obligatorio'),
     body('recargo').isFloat().withMessage('La recargo es obligatorio'),
     body('descuento').isFloat().withMessage('El descuento es obligatorio'),
-    body('socios_id').notEmpty().withMessage('La socios_id es obligatorio'),
-    body('cobradores_id').isInt().withMessage('El cobrtadores_id es obligatorio')
+    //body('socios_id').notEmpty().withMessage('La socios_id es obligatorio'),
+    //body('cobradores_id').isInt().withMessage('El cobrtadores_id es obligatorio')
 ]
 
 exports.validarActividades = [

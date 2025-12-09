@@ -39,12 +39,12 @@ exports.getPorId = async (req, res, next) => {
  * (Traducción a async/await)
  */
 exports.insertar = async (req, res, next) => {
-    const { fecha_emision, mes, monto, estado, recargo, descuento, socios_id, cobradores_id } = req.body;
+    const { fechaEmision, mes, monto, estado, recargo, descuento, idSocio, idCobrador } = req.body;
     
     try {
         const [result] = await db.query(
-            'INSERT INTO cobranzas (fecha_emision, mes, monto, estado, recargo, descuento, socios_id, cobradores_id) VALUES(?,?,?,?,?,?,?,?)', 
-            [fecha_emision, mes, monto, estado, recargo, descuento, socios_id, cobradores_id]
+            'INSERT INTO cobranzas (fechaEmision, mes, monto, estado, recargo, descuento, idSocio, idCobrador) VALUES(?,?,?,?,?,?,?,?)', 
+            [fechaEmision, mes, monto, estado, recargo, descuento, idSocio, idCobrador]
         );
         
         res.status(201).json({ id: result.insertId });
@@ -59,12 +59,12 @@ exports.insertar = async (req, res, next) => {
  */
 exports.modificar = async (req, res, next) => {
     const id = req.params.id;
-    const { fecha_emision, mes, monto, estado, recargo, descuento, socios_id, cobradores_id } = req.body;
+    const { fechaEmision, mes, monto, estado, recargo, descuento, idSocio, idCobrador } = req.body;
     
     try {
         await db.query(
-            'UPDATE cobranzas SET fecha_emision=?, mes=?, monto=?, estado=?, recargo=?, descuento=?, socios_id=?, cobradores_id=? WHERE id=?',
-            [fecha_emision, mes, monto, estado, recargo, descuento, socios_id, cobradores_id, id]
+            'UPDATE cobranzas SET fechaEmision=?, mes=?, monto=?, estado=?, recargo=?, descuento=?, idSocio=?, idCobrador=? WHERE id=?',
+            [fechaEmision, mes, monto, estado, recargo, descuento, idSocio, idCobrador, id]
         );
         
         res.json({ mensaje: 'Cobranza actualizada' });
